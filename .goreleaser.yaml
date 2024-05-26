@@ -12,7 +12,7 @@ builds:
   env:
     - CGO_ENABLED=0
   ldflags:
-      - -s -w -X github.com/kubenet-dev/kubenet/commands.version={{.Version}} -X github.com/kubenet-dev/kubenet/commands.commit={{.ShortCommit}} -X github.com/kubenet-dev/kubenet/commands.date={{.Date}}
+      - -s -w -X github.com/kubenet-dev/kubenetctl/commands.version={{.Version}} -X github.com/kubenet-dev/kubenetctl/commands.commit={{.ShortCommit}} -X github.com/kubenet-dev/kubenetctl/commands.date={{.Date}}
   goos:
     - darwin
     - linux
