@@ -34,8 +34,8 @@ var (
 )
 
 const (
-	repoUrl     = "https://github.com/kubenet-dev/kubenet"
-	downloadURL = "https://github.com/kubenet-dev/kubenet/raw/main/install.sh"
+	repoUrl     = "https://github.com/kubenet-dev/kubenetctl"
+	downloadURL = "https://github.com/kubenet-dev/kubenetctl/raw/main/install.sh"
 )
 
 func GetVersionCommand(ctx context.Context) *cobra.Command {
