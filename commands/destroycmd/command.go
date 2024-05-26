@@ -63,21 +63,19 @@ func (r *Runner) runE(c *cobra.Command, args []string) error {
 	x := run.NewRun("Destroy kubenet Environment")
 
 	x.Step(
-		run.S("create k8s kind cluster"),
-		run.S("kind create cluster --name kubenet"),
+		run.S("Drop the iptables rule"),
+		run.S("sudo iptables -D DOCKER-USER -o br-$(docker network inspect -f '{{ printf \"%.12s\" .ID }}' kind) -j ACCEPT"),
 	)
 
 	x.Step(
-		run.S("Allow the kind cluster to communicate with the containerlab topology (clab will be created in a later step)"),
-		run.S("sudo iptables -I DOCKER-USER -o br-$(docker network inspect -f '{{ printf \"%.12s\" .ID }}' kind) -j ACCEPT"),
+		run.S("Delete the kind cluster"),
+		run.S("kind delete cluster --name kubenet"),
 	)
 
-	/*
-		x.Step(
-			run.S("Deploy Containerlab topology"),
-			run.S("sudo containerlab deploy -t https://docs.sdcio.dev/artifacts/basic-usage/basic-usage.clab.yaml --reconfigure"),
-		)
-	*/
-
+	x.Step(
+		run.S("Destroy Containerlab topology"),
+		run.S("sudo containerlab destroy -t https://github.com/kubenet-dev/kubenet/blob/main/lab/3node.yaml --reconfigure"),
+	)
+	
 	return x.Run(ctx)
 }

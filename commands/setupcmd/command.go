@@ -72,12 +72,12 @@ func (r *Runner) runE(c *cobra.Command, args []string) error {
 		run.S("sudo iptables -I DOCKER-USER -o br-$(docker network inspect -f '{{ printf \"%.12s\" .ID }}' kind) -j ACCEPT"),
 	)
 
-	/*
-		x.Step(
-			run.S("Deploy Containerlab topology"),
-			run.S("sudo containerlab deploy -t https://docs.sdcio.dev/artifacts/basic-usage/basic-usage.clab.yaml --reconfigure"),
-		)
-	*/
+	x.Step(
+		run.S("Deploy Containerlab topology"),
+		run.S("sudo containerlab deploy -t https://github.com/kubenet-dev/kubenet/blob/main/lab/3node.yaml --reconfigure"),
+	)
 
 	return x.Run(ctx)
 }
+
+

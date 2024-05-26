@@ -70,6 +70,12 @@ func (r *Run) Step(text, command []string) {
 }
 
 func (r *Run) Run(ctx context.Context) error {
+	if r.options.Shell == "" {
+		r.options.Shell = "bash"
+	}
+
+	r.options.Auto = getContextValue[bool](ctx, CtxKeyAutomatic)
+
 	if err := r.setup(); err != nil {
 		return err
 	}

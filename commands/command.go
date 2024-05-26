@@ -23,7 +23,10 @@ import (
 	"path/filepath"
 
 	"github.com/adrg/xdg"
+	"github.com/kubenet-dev/kubenetctl/commands/destroycmd"
+	"github.com/kubenet-dev/kubenetctl/commands/installcmd"
 	"github.com/kubenet-dev/kubenetctl/commands/setupcmd"
+	"github.com/kubenet-dev/kubenetctl/pkg/run"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 )
@@ -41,6 +44,8 @@ var (
 )
 
 func GetMain(ctx context.Context) *cobra.Command {
+	var auto bool
+	var shell string
 	//showVersion := false
 	cmd := &cobra.Command{
 		Use:          "kubenet",
@@ -52,6 +57,10 @@ func GetMain(ctx context.Context) *cobra.Command {
 		SilenceErrors: true,
 		PersistentPreRunE: func(cmd *cobra.Command, args []string) error {
 			// initialize viper settings
+			ctx := cmd.Context()
+			ctx = context.WithValue(ctx, run.CtxKeyAutomatic, auto)
+			ctx = context.WithValue(ctx, run.CtxKeyShell, shell)
+			cmd.SetContext(ctx)
 			initConfig()
 			return nil
 		},
@@ -76,8 +85,11 @@ func GetMain(ctx context.Context) *cobra.Command {
 	initConfig()
 
 	cmd.AddCommand(setupcmd.NewCommand(ctx, version))
+	cmd.AddCommand(destroycmd.NewCommand(ctx, version))
+	cmd.AddCommand(installcmd.NewCommand(ctx, version))
 	cmd.AddCommand(GetVersionCommand(ctx))
-	//cmd.PersistentFlags().StringVar(&configFile, "config", "c", fmt.Sprintf("Default config file (%s/%s/%s.%s)", xdg.ConfigHome, defaultConfigFileSubDir, defaultConfigFileName, defaultConfigFileNameExt))
+	cmd.PersistentFlags().BoolVarP(&auto, "automatic", "a", false, "run in automatic mode")
+	cmd.PersistentFlags().StringVar(&shell, "shell", "bash", "shell to be used to execute the commands")
 
 	return cmd
 }

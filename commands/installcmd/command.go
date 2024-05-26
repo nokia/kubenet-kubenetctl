@@ -63,21 +63,31 @@ func (r *Runner) runE(c *cobra.Command, args []string) error {
 	x := run.NewRun("Install kubenet Components")
 
 	x.Step(
-		run.S("create k8s kind cluster"),
-		run.S("kind create cluster --name kubenet"),
+		run.S("install package server: (tool to interact with git from k8s using packages (KRM manifests))"),
+		run.S("kubectl apply -f https://raw.githubusercontent.com/kubenet-dev/kubenet/main/artifacts/out/pkgserver.yaml"),	
 	)
 
 	x.Step(
-		run.S("Allow the kind cluster to communicate with the containerlab topology (clab will be created in a later step)"),
-		run.S("sudo iptables -I DOCKER-USER -o br-$(docker network inspect -f '{{ printf \"%.12s\" .ID }}' kind) -j ACCEPT"),
+		run.S("install sdc: (tool to interact with yang devices from k8s)"),
+		run.S("kubectl apply -f https://raw.githubusercontent.com/kubenet-dev/kubenet/main/artifacts/out/sdc.yaml"),
 	)
 
-	/*
-		x.Step(
-			run.S("Deploy Containerlab topology"),
-			run.S("sudo containerlab deploy -t https://docs.sdcio.dev/artifacts/basic-usage/basic-usage.clab.yaml --reconfigure"),
-		)
-	*/
+	x.Step(
+		run.S("install kuid-server: (tool for inventory and identity (IPAM/VLAN/AS/etc) using k8s api"),
+		run.S("kubectl apply -f https://raw.githubusercontent.com/kubenet-dev/kubenet/main/artifacts/out/kuid-server.yaml"),
+	)
+
+	x.Step(
+		run.S("install kuid-apps: (apps leveraging kuid-server focussed on networking"),
+		run.S("kubectl apply -f https://raw.githubusercontent.com/kubenet-dev/kubenet/main/artifacts/out/kuidapps.yaml"),
+
+	)
+
+	x.Step(
+		run.S("install kuid-nokia-srl: (vendor specific app for specific nokia srl artifacts "),
+		run.S("kubectl apply -f https://raw.githubusercontent.com/kubenet-dev/kubenet/main/artifacts/out/kuid-nokia-srl.yaml"),
+
+	)
 
 	return x.Run(ctx)
 }

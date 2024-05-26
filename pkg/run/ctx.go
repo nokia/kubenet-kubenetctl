@@ -16,19 +16,13 @@ limitations under the License.
 
 package run
 
-import "context"
+type CtxKey string
 
-// S is a short-hand for converting string slice syntaxes.
-func S(s ...string) []string {
-	return s
+func (c CtxKey) String() string {
+	return "context key " + string(c)
 }
 
-func getContextValue[T any](ctx context.Context, key any) T {
-	x := ctx.Value(key)
-	d, ok := x.(T)
-	if !ok {
-		var zero T
-		return zero
-	}
-	return d
-}
+const (
+	CtxKeyAutomatic CtxKey = "auto"
+	CtxKeyShell     CtxKey = "shell"
+)
