@@ -25,6 +25,13 @@ import (
 	"github.com/adrg/xdg"
 	"github.com/kubenet-dev/kubenetctl/commands/destroycmd"
 	"github.com/kubenet-dev/kubenetctl/commands/installcmd"
+	"github.com/kubenet-dev/kubenetctl/commands/invcmd"
+	"github.com/kubenet-dev/kubenetctl/commands/networkconfigcmd"
+	"github.com/kubenet-dev/kubenetctl/commands/networkdefaultcmd"
+	"github.com/kubenet-dev/kubenetctl/commands/networkbridgedcmd"
+	"github.com/kubenet-dev/kubenetctl/commands/networkroutedcmd"
+	"github.com/kubenet-dev/kubenetctl/commands/networkirbcmd"
+	"github.com/kubenet-dev/kubenetctl/commands/sdccmd"
 	"github.com/kubenet-dev/kubenetctl/commands/setupcmd"
 	"github.com/kubenet-dev/kubenetctl/pkg/run"
 	"github.com/spf13/cobra"
@@ -87,6 +94,13 @@ func GetMain(ctx context.Context) *cobra.Command {
 	cmd.AddCommand(setupcmd.NewCommand(ctx, version))
 	cmd.AddCommand(destroycmd.NewCommand(ctx, version))
 	cmd.AddCommand(installcmd.NewCommand(ctx, version))
+	cmd.AddCommand(sdccmd.NewCommand(ctx, version))
+	cmd.AddCommand(invcmd.NewCommand(ctx, version))
+	cmd.AddCommand(networkconfigcmd.NewCommand(ctx, version))
+	cmd.AddCommand(networkdefaultcmd.NewCommand(ctx, version))
+	cmd.AddCommand(networkbridgedcmd.NewCommand(ctx, version))
+	cmd.AddCommand(networkroutedcmd.NewCommand(ctx, version))
+	cmd.AddCommand(networkirbcmd.NewCommand(ctx, version))
 	cmd.AddCommand(GetVersionCommand(ctx))
 	cmd.PersistentFlags().BoolVarP(&auto, "automatic", "a", false, "run in automatic mode")
 	cmd.PersistentFlags().StringVar(&shell, "shell", "bash", "shell to be used to execute the commands")
