@@ -64,27 +64,27 @@ func (r *Runner) runE(c *cobra.Command, args []string) error {
 
 	x.Step(
 		run.S("apply the schema for srlinux 24.3.2"),
-		run.S("kubectl apply -f https://raw.githubusercontent.com/kubenet-dev/kubenet/main/sdc/schemas/srl24-3-2.yaml"),	
+		run.S("kubectl apply -f https://raw.githubusercontent.com/kubenet-dev/kubenet/v0.0.1/sdc/schemas/srl24-3-2.yaml"),	
 	)
 
 	x.Step(
 		run.S("apply the gnmi profile to connect to the target (clab node)"),
-		run.S("kubectl apply -f https://raw.githubusercontent.com/kubenet-dev/kubenet/main/sdc/profiles/conn-gnmi-skipverify.yaml"),
+		run.S("kubectl apply -f https://raw.githubusercontent.com/kubenet-dev/kubenet/v0.0.1/sdc/profiles/conn-gnmi-skipverify.yaml"),
 	)
 
 	x.Step(
 		run.S("apply the gnmi sync profile to sync config from the target (clab node)"),
-		run.S("kubectl apply -f https://raw.githubusercontent.com/kubenet-dev/kubenet/main/sdc/profiles/sync-gnmi-get.yaml"),
+		run.S("kubectl apply -f https://raw.githubusercontent.com/kubenet-dev/kubenet/v0.0.1/sdc/profiles/sync-gnmi-get.yaml"),
 	)
 
 	x.Step(
 		run.S("apply the srl secret with credentials to authenticate to the target (clab node)"),
-		run.S("kubectl apply -f https://raw.githubusercontent.com/kubenet-dev/kubenet/main/sdc/profiles/secret.yaml"),
+		run.S("kubectl apply -f https://raw.githubusercontent.com/kubenet-dev/kubenet/v0.0.1/sdc/profiles/secret.yaml"),
 	)
 
 	x.Step(
 		run.S("apply the discovery rule to discover the srl devices deployed by containerlab"),
-		run.S("kubectl apply -f https://raw.githubusercontent.com/kubenet-dev/kubenet/main/sdc/drrules/dr-dynamic.yaml"),
+		run.S("kubectl apply -f https://raw.githubusercontent.com/kubenet-dev/kubenet/v0.0.1/sdc/drrules/dr-dynamic.yaml"),
 	)
 
 	return x.Run(ctx)

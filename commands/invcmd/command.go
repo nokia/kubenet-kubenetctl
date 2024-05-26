@@ -64,17 +64,17 @@ func (r *Runner) runE(c *cobra.Command, args []string) error {
 
 	x.Step(
 		run.S("apply the nodemodel configuration for ixrd2 srlinux device"),
-		run.S("kubectl apply -f https://raw.githubusercontent.com/kubenet-dev/kubenet/main/inventory/srl/ixrd2.yaml"),	
+		run.S("kubectl apply -f https://raw.githubusercontent.com/kubenet-dev/kubenet/v0.0.1/inventory/srl/ixrd2.yaml"),	
 	)
 
 	x.Step(
 		run.S("apply the nodemodel configuration for ixrd3 srlinux device"),
-		run.S("kubectl apply -f https://raw.githubusercontent.com/kubenet-dev/kubenet/main/inventory/srl/ixrd3.yaml"),	
+		run.S("kubectl apply -f https://raw.githubusercontent.com/kubenet-dev/kubenet/v0.0.1/inventory/srl/ixrd3.yaml"),	
 	)
 
 	x.Step(
 		run.S("import the containerlab topology in kubernetes"),
-		run.S("kubectl apply -f https://raw.githubusercontent.com/kubenet-dev/kubenet/main/topo/3node-topology.yaml"),
+		run.S("kubectl apply -f https://raw.githubusercontent.com/kubenet-dev/kubenet/v0.0.1/topo/3node-topology.yaml"),
 	)
 
 	return x.Run(ctx)

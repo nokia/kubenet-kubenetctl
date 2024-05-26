@@ -64,12 +64,12 @@ func (r *Runner) runE(c *cobra.Command, args []string) error {
 
 	x.Step(
 		run.S("apply the ip index (network prefixes the network is setup with)"),
-		run.S("kubectl apply -f https://raw.githubusercontent.com/kubenet-dev/kubenet/main/network/default-ipindex.yaml"),	
+		run.S("kubectl apply -f https://raw.githubusercontent.com/kubenet-dev/kubenet/v0.0.1/network/default-ipindex.yaml"),	
 	)
 
 	x.Step(
 		run.S("apply the network config (network parameters for your network, BGP, VXLAN, Prefixes)"),
-		run.S("kubectl apply -f https://raw.githubusercontent.com/kubenet-dev/kubenet/main/network/default-networkconfig.yaml"),	
+		run.S("kubectl apply -f https://raw.githubusercontent.com/kubenet-dev/kubenet/v0.0.1/network/default-networkconfig.yaml"),	
 	)
 
 	return x.Run(ctx)

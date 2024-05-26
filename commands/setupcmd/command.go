@@ -74,7 +74,7 @@ func (r *Runner) runE(c *cobra.Command, args []string) error {
 
 	x.Step(
 		run.S("Deploy Containerlab topology"),
-		run.S("sudo containerlab deploy -t https://github.com/kubenet-dev/kubenet/blob/main/lab/3node.yaml --reconfigure"),
+		run.S("sudo containerlab deploy -t https://raw.githubusercontent.com/kubenet-dev/kubenet/v0.0.1/lab/3node.yaml --reconfigure"),
 	)
 
 	return x.Run(ctx)

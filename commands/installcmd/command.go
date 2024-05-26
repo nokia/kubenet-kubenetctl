@@ -64,28 +64,28 @@ func (r *Runner) runE(c *cobra.Command, args []string) error {
 
 	x.Step(
 		run.S("install package server: (tool to interact with git from k8s using packages (KRM manifests))"),
-		run.S("kubectl apply -f https://raw.githubusercontent.com/kubenet-dev/kubenet/main/artifacts/out/pkgserver.yaml"),	
+		run.S("kubectl apply -f https://raw.githubusercontent.com/kubenet-dev/kubenet/v0.0.1/artifacts/out/pkgserver.yaml"),	
 	)
 
 	x.Step(
 		run.S("install sdc: (tool to interact with yang devices from k8s)"),
-		run.S("kubectl apply -f https://raw.githubusercontent.com/kubenet-dev/kubenet/main/artifacts/out/sdc.yaml"),
+		run.S("kubectl apply -f https://raw.githubusercontent.com/kubenet-dev/kubenet/v0.0.1/artifacts/out/sdc.yaml"),
 	)
 
 	x.Step(
 		run.S("install kuid-server: (tool for inventory and identity (IPAM/VLAN/AS/etc) using k8s api"),
-		run.S("kubectl apply -f https://raw.githubusercontent.com/kubenet-dev/kubenet/main/artifacts/out/kuid-server.yaml"),
+		run.S("kubectl apply -f https://raw.githubusercontent.com/kubenet-dev/kubenet/v0.0.1/artifacts/out/kuid-server.yaml"),
 	)
 
 	x.Step(
 		run.S("install kuid-apps: (apps leveraging kuid-server focussed on networking"),
-		run.S("kubectl apply -f https://raw.githubusercontent.com/kubenet-dev/kubenet/main/artifacts/out/kuidapps.yaml"),
+		run.S("kubectl apply -f https://raw.githubusercontent.com/kubenet-dev/kubenet/v0.0.1/artifacts/out/kuidapps.yaml"),
 
 	)
 
 	x.Step(
 		run.S("install kuid-nokia-srl: (vendor specific app for specific nokia srl artifacts "),
-		run.S("kubectl apply -f https://raw.githubusercontent.com/kubenet-dev/kubenet/main/artifacts/out/kuid-nokia-srl.yaml"),
+		run.S("kubectl apply -f https://raw.githubusercontent.com/kubenet-dev/kubenet/v0.0.1/artifacts/out/kuid-nokia-srl.yaml"),
 
 	)
 
