@@ -64,7 +64,7 @@ func (r *Runner) runE(c *cobra.Command, args []string) error {
 
 	x.Step(
 		run.S("apply the default network config"),
-		run.S("kubectl apply -f https://raw.githubusercontent.com/kubenet-dev/kubenet/v0.0.1/network/vpc3-irb-network.yaml"),	
+		run.S("kubectl apply -f https://raw.githubusercontent.com/kubenet-dev/kubenet/v0.0.1/network/vpc3-irb-network.yaml"),
 	)
 
 	return x.Run(ctx)

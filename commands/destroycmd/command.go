@@ -76,6 +76,6 @@ func (r *Runner) runE(c *cobra.Command, args []string) error {
 		run.S("Destroy Containerlab topology"),
 		run.S("sudo containerlab destroy -t https://raw.githubusercontent.com/kubenet-dev/kubenet/v0.0.1/lab/3node.yaml"),
 	)
-	
+
 	return x.Run(ctx)
 }

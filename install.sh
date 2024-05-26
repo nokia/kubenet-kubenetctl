@@ -7,15 +7,15 @@
 # The install script is based off of the Apache 2.0 script from Helm,
 # https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3
 
-: ${BINARY_NAME:="kubenet"}
-: ${PROJECT_NAME:="kubenet"} # if project name does not match binary name
+: ${BINARY_NAME:="kubenetctl"}
+: ${PROJECT_NAME:="kubenetctl"} # if project name does not match binary name
 : ${USE_SUDO:="true"}
 : ${USE_PKG:="false"} # default --use-pkg flag value. will use package installation by default unless the default is changed to false
 : ${VERIFY_CHECKSUM:="false"}
 : ${BIN_INSTALL_DIR:="/usr/local/bin"}
 : ${REPO_NAME:="kubenet-dev/kubenetctl"}
 : ${REPO_URL:="https://github.com/$REPO_NAME"}
-: ${PROJECT_URL:="https://kubenet.kubenet-dev.dev"}
+: ${PROJECT_URL:="https://learn.kubenet.dev"}
 : ${LATEST_URL:="https://api.github.com/repos/$REPO_NAME/releases/latest"}
 # detectArch discovers the architecture for this system.
 detectArch() {
