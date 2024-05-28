@@ -19,6 +19,7 @@ package commands
 import (
 	"context"
 	"os"
+	"os/signal"
 	"path"
 	"path/filepath"
 
@@ -85,6 +86,14 @@ func GetMain(ctx context.Context) *cobra.Command {
 	}
 
 	//pf := cmd.PersistentFlags()
+	// Catch interrupts and cleanup
+	c := make(chan os.Signal, 1)
+	signal.Notify(c, os.Interrupt)
+	go func() {
+		for range c {
+			os.Exit(0)
+		}
+	}()
 
 	// ensure the viper config directory exists
 	cobra.CheckErr(os.MkdirAll(path.Join(xdg.ConfigHome, defaultConfigFileSubDir), 0700))
