@@ -52,7 +52,7 @@ var (
 )
 
 func GetMain(ctx context.Context) *cobra.Command {
-	var auto bool
+	//var auto bool
 	var shell string
 	//showVersion := false
 	cmd := &cobra.Command{
@@ -66,7 +66,7 @@ func GetMain(ctx context.Context) *cobra.Command {
 		PersistentPreRunE: func(cmd *cobra.Command, args []string) error {
 			// initialize viper settings
 			ctx := cmd.Context()
-			ctx = context.WithValue(ctx, run.CtxKeyAutomatic, auto)
+			//ctx = context.WithValue(ctx, run.CtxKeyAutomatic, auto)
 			ctx = context.WithValue(ctx, run.CtxKeyShell, shell)
 			cmd.SetContext(ctx)
 			initConfig()
@@ -111,7 +111,7 @@ func GetMain(ctx context.Context) *cobra.Command {
 	cmd.AddCommand(networkroutedcmd.NewCommand(ctx, version))
 	cmd.AddCommand(networkirbcmd.NewCommand(ctx, version))
 	cmd.AddCommand(GetVersionCommand(ctx))
-	cmd.PersistentFlags().BoolVarP(&auto, "automatic", "a", false, "run in automatic mode")
+	//cmd.PersistentFlags().BoolVarP(&auto, "interactive", "i", true, "run in interacti mode")
 	cmd.PersistentFlags().StringVar(&shell, "shell", "bash", "shell to be used to execute the commands")
 
 	return cmd

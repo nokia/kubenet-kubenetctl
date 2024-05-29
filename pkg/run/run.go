@@ -74,7 +74,8 @@ func (r *Run) Run(ctx context.Context) error {
 		r.options.Shell = "bash"
 	}
 
-	r.options.Auto = getContextValue[bool](ctx, CtxKeyAutomatic)
+	//r.options.Auto = getContextValue[bool](ctx, CtxKeyAutomatic)
+	r.options.Auto = true // always run in automatic mode
 
 	if err := r.setup(); err != nil {
 		return err
